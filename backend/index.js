@@ -3,11 +3,16 @@ import { config } from 'dotenv'
 import cors from 'cors'
 import mongoose from 'mongoose'
 
+import productRoute from './routes/productRoute.js'
+
 config()
 
 const app = express()
 
 app.use(cors())
+app.use(express.json())
+
+app.use('/product', productRoute)
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on ${process.env.PORT} PORT`)
