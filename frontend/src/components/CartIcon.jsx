@@ -1,5 +1,11 @@
+import { useCart } from '../../context/CartContext'
+
 export default function CartIcon() {
-  const totalQuantity = 0
+  const { cartItems } = useCart()
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  )
 
   return (
     <div className='flex-none'>
