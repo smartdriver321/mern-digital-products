@@ -29,7 +29,7 @@ export default function Admin() {
             <tr>
               <th>
                 <Link
-                  to='/admin/product/create'
+                  to='/admin/products/create'
                   className='bg-green-600 hover:bg-green-900 py-2 px-4 font-medium rounded-lg 
                    shadow-md text-base-100'
                 >
