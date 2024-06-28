@@ -11,6 +11,7 @@ import Cancel from './pages/Cancel'
 import Shop from './pages/Shop'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           }
         />
       </Routes>
+      <Footer />
     </>
   )
 }
