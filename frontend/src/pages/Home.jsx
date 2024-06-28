@@ -17,6 +17,8 @@ export default function Home() {
       })
   }, [])
 
+  const latestproducts = product.slice(0, 3)
+
   return (
     <div className='p-4 max-w-[1300px] mx-auto my-16'>
       <div className='hero-content text-center mb-24'>
@@ -33,7 +35,7 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <ProductCard product={product} />
+      <ProductCard product={latestproducts} />
     </div>
   )
 }
