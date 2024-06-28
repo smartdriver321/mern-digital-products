@@ -9,6 +9,7 @@ import multer from 'multer'
 import productRoute from './routes/productRoute.js'
 import stripeRoute from './routes/stripeRoute.js'
 import subscriberRoute from './routes/subscriberRoute.js'
+import authRoute from './routes/authRoute.js'
 
 config()
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 app.use('/products', productRoute)
 app.use('/stripe', stripeRoute)
 app.use('/subscriber', subscriberRoute)
+app.use('/auth', authRoute)
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on ${process.env.PORT} PORT`)

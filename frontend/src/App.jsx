@@ -12,6 +12,8 @@ import Shop from './pages/Shop'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 export default function App() {
   const location = useLocation()
@@ -25,7 +27,8 @@ export default function App() {
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/shop' element={<Shop />} />
-
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/success' element={<Success />} />
         <Route path='/cancel' element={<Cancel />} />
 
