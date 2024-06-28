@@ -5,11 +5,12 @@ import Admin from './pages/Admin'
 import CreateProduct from './pages/CreateProduct'
 import EditProduct from './pages/EditProduct'
 import DeleteProduct from './pages/DeleteProduct'
-import ProtectedRoutes from './components/ProtectedRoutes'
-import Navbar from './components/Navbar'
 import Cart from './pages/Cart'
 import Success from './pages/Success'
 import Cancel from './pages/Cancel'
+import Shop from './pages/Shop'
+import ProtectedRoutes from './components/ProtectedRoutes'
+import Navbar from './components/Navbar'
 
 export default function App() {
   return (
@@ -18,6 +19,8 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/shop' element={<Shop />} />
+
         <Route path='/success' element={<Success />} />
         <Route path='/cancel' element={<Cancel />} />
 
@@ -39,7 +42,6 @@ function AdminRoutes() {
     <Routes>
       <Route path='/' element={<Admin />} />
       <Route path='/products/create' element={<CreateProduct />} />
-
       <Route path='/products/edit/:id' element={<EditProduct />} />
       <Route path='/products/delete/:id' element={<DeleteProduct />} />
     </Routes>
