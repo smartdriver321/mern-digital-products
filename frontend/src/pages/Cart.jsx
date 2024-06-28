@@ -1,4 +1,11 @@
+import { loadStripe } from '@stripe/stripe-js'
+import axios from 'axios'
+
 import { useCart } from '../context/CartContext.jsx'
+
+const stripePromise = loadStripe(
+  'pk_test_51OWEelI6HMYmnSrbz52YGTc9hOd7fSZ887TwAINoXsT1JjQd6vZzrAJQASckv7OjOTdfDksIJqi13xWbIwKEJkjT00eaSE0Lvr'
+)
 
 export default function Cart() {
   const { cartItems, decreaseCartItemQuantity } = useCart()
@@ -15,6 +22,38 @@ export default function Cart() {
     (acc, item) => acc + item.priceInCents * item.quantity,
     0
   )
+
+  const handleCheckout = async () => {
+    const stripe = await stripePromise
+
+    const transformedItems = cartItems.map((item) => ({
+      name: item.name,
+      priceInCents: item.priceInCents,
+      quantity: item.quantity,
+      image: item.image,
+    }))
+
+    try {
+      const response = await axios.post(
+        `${
+          import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
+        }/stripe/create-checkout-session`,
+        {
+          products: transformedItems,
+        }
+      )
+
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: response.data.id,
+      })
+
+      if (error) {
+        console.error('Error during Stripe checkout redirection: ', error)
+      }
+    } catch (error) {
+      console.error('Checkout process error:', error)
+    }
+  }
 
   return (
     <div className='p-4 mt-16 max-w-[1400px] mx-auto'>
@@ -56,7 +95,9 @@ export default function Cart() {
         <p className='text-2xl font-semibold mb-4'>
           Total Price: ${(totalPrice / 100).toFixed(2)}
         </p>
-        <button className='btn btn-accent'>Proceed to Checkout</button>
+        <button className='btn btn-accent' onClick={handleCheckout}>
+          Proceed to Checkout
+        </button>
       </div>
     </div>
   )

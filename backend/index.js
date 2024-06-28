@@ -7,6 +7,7 @@ import { CloudinaryStorage } from 'multer-storage-cloudinary'
 import multer from 'multer'
 
 import productRoute from './routes/productRoute.js'
+import stripeRoute from './routes/stripeRoute.js'
 
 config()
 
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/products', productRoute)
+app.use('/stripe', stripeRoute)
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on ${process.env.PORT} PORT`)
