@@ -50,6 +50,7 @@ router.post('/create-checkout-session', async (req, res) => {
   }
 })
 
+// CREATE API STATS ROUTE
 router.get('/api/stats', async (req, res) => {
   try {
     const balance = await stripe.balance.retrieve()

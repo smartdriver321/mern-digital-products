@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Stats from '../components/Stats'
 
 export default function Admin() {
   const [product, setProduct] = useState([])
@@ -23,6 +24,8 @@ export default function Admin() {
 
   return (
     <div className='px-4 py-8 max-w-7xl mx-auto'>
+      <Stats />
+
       <div className='overflow-x-auto'>
         <table className='table'>
           <thead>

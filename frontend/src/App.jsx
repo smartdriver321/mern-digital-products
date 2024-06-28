@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Home from './pages/Home'
 import Admin from './pages/Admin'
@@ -14,9 +14,13 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
 export default function App() {
+  const location = useLocation()
+  const isAdminRoute = location.pathname.startsWith('/admin')
+
   return (
     <>
       <Navbar />
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
@@ -34,7 +38,7 @@ export default function App() {
           }
         />
       </Routes>
-      <Footer />
+      {isAdminRoute ? '' : <Footer />}
     </>
   )
 }
