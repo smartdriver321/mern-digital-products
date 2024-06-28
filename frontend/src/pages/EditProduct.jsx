@@ -16,6 +16,15 @@ export default function EditProduct() {
   const [description, setDescription] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const token = localStorage.getItem('token')
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  }
+
   useEffect(() => {
     setLoading(true)
     axios
@@ -41,7 +50,8 @@ export default function EditProduct() {
     axios
       .put(
         `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/products/${id}`,
-        data
+        data,
+        config
       )
       .then(() => {
         setLoading(false)

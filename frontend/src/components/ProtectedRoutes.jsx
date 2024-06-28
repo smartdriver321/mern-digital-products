@@ -1,8 +1,7 @@
 import { Navigate } from 'react-router-dom'
 
 const isAuthenticated = () => {
-  // return !!localStorage.getItem('token')
-  return true
+  return !!localStorage.getItem('token')
 }
 
 const ProtectedRoutes = ({ children }) => {

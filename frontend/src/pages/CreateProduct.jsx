@@ -17,6 +17,15 @@ export default function CreateProduct() {
   const [imgPreview, setImgPreview] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  const token = localStorage.getItem('token')
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  }
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0]
 
@@ -89,7 +98,8 @@ export default function CreateProduct() {
 
       await axios.post(
         `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/products`,
-        formData
+        formData,
+        config
       )
 
       enqueueSnackbar('Product saved successfully', { variant: 'success' })

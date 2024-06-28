@@ -12,12 +12,22 @@ export default function DeleteProduct() {
 
   const [loading, setLoading] = useState(false)
 
+  const token = localStorage.getItem('token')
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  }
+
   const handleDeleteProduct = () => {
     setLoading(true)
 
     axios
       .delete(
-        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/products/${id}`
+        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/products/${id}`,
+        config
       )
       .then(() => {
         setLoading(false)

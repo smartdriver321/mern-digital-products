@@ -14,6 +14,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import AdminNavbar from './components/AdminNavbar'
 
 export default function App() {
   const location = useLocation()
@@ -21,7 +22,7 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
+      {isAdminRoute ? <AdminNavbar /> : <Navbar />}
 
       <Routes>
         <Route path='/' element={<Home />} />
